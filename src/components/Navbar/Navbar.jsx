@@ -23,7 +23,7 @@ export const AcmeLogo = () => {
   );
 };
 
-export default function App() {
+export default function NavbarComponent() {
   const menuItems = [
     "Profile",
     "Dashboard",
