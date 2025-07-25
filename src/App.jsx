@@ -1,11 +1,11 @@
-
+import { Navbar } from "@heroui/react"
+import NavbarComponent from "./components/Navbar/Navbar.jsx"
 
 function App() {
 
-  return  <>
-    <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+
+  return <> 
+  <NavbarComponent/>
   </>
   
 }
