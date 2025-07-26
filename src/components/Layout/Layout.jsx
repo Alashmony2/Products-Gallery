@@ -6,7 +6,10 @@ import { Outlet } from 'react-router-dom'
 export default function Layout() {
   return <>
   <NavbarComponent/>
-  <Outlet/>
+  <div className="container mx-auto my-5">
+    <Outlet/>
+  </div>
+  
   <Footer/>
   
   </>
