@@ -1,3 +1,5 @@
+import { NavLink, Link as RouterLink } from "react-router-dom";
+
 import {
   Navbar,
   NavbarBrand,
@@ -25,13 +27,7 @@ export const AcmeLogo = () => {
 
 export default function NavbarComponent() {
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
+    
     "Team Settings",
     "Help & Feedback",
     "Log Out",
@@ -56,14 +52,14 @@ export default function NavbarComponent() {
           <p className="font-bold text-inherit">ACME</p>
         </NavbarBrand>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
+          <NavLink color="foreground" to="/">
+            Home
+          </NavLink>
         </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" color="warning" href="#">
-            Customers
-          </Link>
+        <NavbarItem >
+          <NavLink aria-current="page" color="warning" to="/cart">
+            Cart
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
@@ -73,12 +69,14 @@ export default function NavbarComponent() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
-            Sign Up
+          <Button
+            as={RouterLink}
+            to="/login"
+            color="warning"
+            variant="flat"
+          >
+            Login
           </Button>
         </NavbarItem>
       </NavbarContent>
