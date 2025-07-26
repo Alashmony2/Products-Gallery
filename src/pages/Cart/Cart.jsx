@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import { Button } from "@heroui/react";
 import { Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Cart() {
   const { cartItems, removeFromCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const totalPrice = cartItems
     .reduce((acc, item) => acc + item.price, 0)
@@ -62,6 +65,14 @@ export default function Cart() {
           ${totalPrice}
         </span>
       </div>
+      <Button
+        color="primary"
+        className="mt-4"
+        onPress={() => navigate("/checkout")}
+      >
+        Proceed to Checkout
+      </Button>
+
     </div>
   );
 }
