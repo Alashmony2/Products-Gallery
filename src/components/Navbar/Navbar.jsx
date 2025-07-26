@@ -67,9 +67,9 @@ export default function NavbarComponent() {
           </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
+          <NavLink color="foreground" to="/categories">
+            Categories
+          </NavLink>
         </NavbarItem>
       </NavbarContent>
 
