@@ -1,5 +1,4 @@
-import { NavLink, Link as RouterLink } from "react-router-dom";
-
+import { NavLink, Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Navbar,
   NavbarBrand,
@@ -11,6 +10,8 @@ import {
   Link,
   Button,
 } from "@heroui/react";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext.jsx";
 
 export const AcmeLogo = () => {
   return (
@@ -26,12 +27,16 @@ export const AcmeLogo = () => {
 };
 
 export default function NavbarComponent() {
-  const menuItems = [
-    
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    navigate("/login");
+  };
+
+  const menuItems = ["Team Settings", "Help & Feedback"];
 
   return (
     <Navbar disableAnimation isBordered>
@@ -42,21 +47,21 @@ export default function NavbarComponent() {
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
           <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">Product Gallery</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
           <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <p className="font-bold text-inherit">Product Gallery</p>
         </NavbarBrand>
         <NavbarItem>
           <NavLink color="foreground" to="/">
             Home
           </NavLink>
         </NavbarItem>
-        <NavbarItem >
+        <NavbarItem>
           <NavLink aria-current="page" color="warning" to="/cart">
             Cart
           </NavLink>
@@ -69,33 +74,36 @@ export default function NavbarComponent() {
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem>
-          <Button
-            as={RouterLink}
-            to="/login"
-            color="warning"
-            variant="flat"
-          >
-            Login
-          </Button>
-        </NavbarItem>
+        {isLoggedIn ? (
+          <NavbarItem>
+            <Button onPress={handleLogout} color="danger" variant="flat">
+              Logout
+            </Button>
+          </NavbarItem>
+        ) : (
+          <NavbarItem>
+            <Button as={RouterLink} to="/login" color="warning" variant="flat">
+              Login
+            </Button>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
-              }
-              href="#"
-              size="lg"
-            >
+            <Link className="w-full" color="foreground" href="#" size="lg">
               {item}
             </Link>
           </NavbarMenuItem>
         ))}
+        {isLoggedIn && (
+          <NavbarMenuItem>
+            <Button onPress={handleLogout} color="danger" variant="flat" fullWidth>
+              Logout
+            </Button>
+          </NavbarMenuItem>
+        )}
       </NavbarMenu>
     </Navbar>
   );
