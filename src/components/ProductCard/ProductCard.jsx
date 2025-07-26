@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
       </h2>
 
       <Link
-        to={`/products/${product.id}`}
+        to={`/product/${product.id}`}
         className="inline-block text-center bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md transition"
       >
         View Details
