@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaFacebook, FaCartShopping, FaLocationDot, FaEnve
 export default function Footer() {
   return (
     <>
-      <footer className="bg-gray-100 dark:bg-slate-900 pt-10 border-t border-gray-300">
+      <footer className="bg-gray-100 dark:bg-slate-900 pt-10  ">
         <div className="max-w-7xl mx-auto px-4 flex flex-wrap">
           <div className="w-full lg:w-6/12 px-4 mb-10 lg:mb-0">
             <h4 className="text-3xl font-bold text-gray-800 dark:text-white mb-3 flex items-center">

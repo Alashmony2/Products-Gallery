@@ -15,7 +15,7 @@ export default function Cart() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="text-center mt-20 text-gray-600 dark:text-gray-300 text-xl">
+      <div className="h-[50vh] flex justify-center items-center text-center  text-gray-600 dark:text-gray-300 text-xl font-semibold">
         🛒 Your cart is empty
       </div>
     );

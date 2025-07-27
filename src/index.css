@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @plugin './hero.js';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 .active{
     color: #D97706;

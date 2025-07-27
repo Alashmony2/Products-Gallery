@@ -13,8 +13,8 @@ export default function Login() {
   const { setIsLoggedIn } = useContext(AuthContext);
 
   const initialValues = {
-    username: "",
-    password: "",
+    username: "mor_2314",
+    password: "83r5^_",
   };
 
   const validationSchema = Yup.object({

@@ -34,7 +34,7 @@ const ProductCard = ({ product }) => {
           as={Link}
           to={`/product/${product.id}`}
           color="warning"
-          variant="shadow"
+          
         >
           View Details
         </Button>
