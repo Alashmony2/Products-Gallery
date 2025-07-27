@@ -36,7 +36,7 @@ export default function NavbarComponent() {
     navigate("/login");
   };
 
-  const menuItems = ["Team Settings", "Help & Feedback"];
+  const menuItems = ["Cart", "Categories"];
 
   return (
     <Navbar disableAnimation isBordered>
@@ -45,14 +45,14 @@ export default function NavbarComponent() {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
+        <NavbarBrand as={RouterLink} to="/" className="cursor-pointer">
           <AcmeLogo />
           <p className="font-bold text-inherit">Product Gallery</p>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarBrand>
+        <NavbarBrand as={RouterLink} to="/" className="cursor-pointer">
           <AcmeLogo />
           <p className="font-bold text-inherit">Product Gallery</p>
         </NavbarBrand>
@@ -92,7 +92,13 @@ export default function NavbarComponent() {
       <NavbarMenu>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" color="foreground" href="#" size="lg">
+            <Link
+              as={RouterLink}
+              to={`/${item.toLowerCase()}`}
+              className="w-full"
+              color="foreground"
+              size="lg"
+            >
               {item}
             </Link>
           </NavbarMenuItem>
