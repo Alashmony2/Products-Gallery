@@ -53,4 +53,4 @@ Includes features like authentication, product categories, cart system, dark mod
 
 ```bash
 # Clone the repo
-git clone https://github.com/Alashmony2/products-gallery.git
+git clone https://github.com/Alashmony2/Products-Gallery
