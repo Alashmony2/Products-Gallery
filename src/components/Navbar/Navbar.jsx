@@ -59,7 +59,7 @@ export default function NavbarComponent() {
       onMenuOpenChange={setIsMenuOpen}
       disableAnimation
       isBordered
-      className="bg-white dark:bg-gray-800 text-black dark:text-gray-200"
+      className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 "
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle />
@@ -146,9 +146,12 @@ export default function NavbarComponent() {
           </NavbarMenuItem>
         )}
       </NavbarMenu>
+      
     </Navbar>
   );
 }
+
+
 
 function MoonIcon() {
   return (

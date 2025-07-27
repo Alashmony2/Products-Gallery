@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
   return (
     <div className="w-full transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg p-4 flex flex-col justify-between">
       <img
-        className="h-48 w-full object-contain mb-4"
+        className="h-48 w-full object-contain mb-4 "
         src={product.image}
         alt={product.title}
       />
