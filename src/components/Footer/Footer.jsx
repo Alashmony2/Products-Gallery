@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaFacebook, FaCartShopping, FaLocationDot, FaEnve
 export default function Footer() {
   return (
     <>
-      <footer className="bg-gray-100 dark:bg-slate-900 pt-10  ">
+      <footer className="bg-gray-100 dark:bg-slate-900 pt-10 pb-6 ">
         <div className="max-w-7xl mx-auto px-4 flex flex-wrap">
           <div className="w-full lg:w-6/12 px-4 mb-10 lg:mb-0">
             <h4 className="text-3xl font-bold text-gray-800 dark:text-white mb-3 flex items-center">
@@ -37,15 +37,15 @@ export default function Footer() {
                 <FaGithub size={24} />
               </a>
               <a href="https://www.linkedin.com/in/ahmed-alashmony-90b133253/" target="_blank" rel="noreferrer"
-                className="bg-white dark:bg-slate-700 text-gray-800 p-3 rounded-full shadow hover:bg-yellow-400 transition">
+                className="bg-white dark:bg-slate-700 text-gray-800 dark:text-white p-3 rounded-full shadow hover:bg-yellow-400 transition">
                 <FaLinkedin size={24} />
               </a>
               <a href="https://www.facebook.com/ahmedsamyalashmony/" target="_blank" rel="noreferrer"
-                className="bg-white dark:bg-slate-700 text-gray-800 p-3 rounded-full shadow hover:bg-yellow-400 transition">
+                className="bg-white dark:bg-slate-700 text-gray-800 dark:text-white p-3 rounded-full shadow hover:bg-yellow-400 transition">
                 <FaFacebook size={24} />
               </a>
               <a href="https://ahmedalashmony.vercel.app/" target="_blank" rel="noreferrer"
-                className="bg-white dark:bg-slate-700 text-gray-800 p-3 rounded-full shadow hover:bg-yellow-400 transition">
+                className="bg-white dark:bg-slate-700 text-gray-800 dark:text-white p-3 rounded-full shadow hover:bg-yellow-400 transition">
                 <FaGlobe size={24} />
               </a>
             </div>

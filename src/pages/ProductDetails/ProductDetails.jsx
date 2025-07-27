@@ -113,10 +113,9 @@ export default function ProductDetails() {
             </span>
           </div>
 
-          {/* زرار Add to Cart */}
           <div className="mt-6">
             <Button
-              onClick={handleAddToCart}
+              onPress={handleAddToCart}
               color="secondary"
               className="w-full"
             >

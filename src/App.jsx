@@ -1,4 +1,3 @@
-import { Navbar } from "@heroui/react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Layout from "./components/Layout/Layout.jsx"
 import Home from "./pages/Home/Home.jsx"

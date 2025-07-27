@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@heroui/react";
-import { ShoppingCart } from "lucide-react"; // SVG icon
+import { ShoppingCart } from "lucide-react";
 import toast from "react-hot-toast";
 import { CartContext } from "../../contexts/CartContext";
-import { AcmeLogo } from './../Navbar/Navbar';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
