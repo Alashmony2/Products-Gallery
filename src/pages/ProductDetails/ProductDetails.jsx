@@ -54,7 +54,7 @@ export default function ProductDetails() {
     );
 
   return (
-    <div className="my-10 dark:bg-slate-900">
+    <div className="my-10 ">
       <div className="max-w-5xl mx-auto px-4 grid md:grid-cols-2 gap-8 bg-white dark:bg-slate-800 rounded-lg shadow-2xl p-6">
         <div className="flex justify-center items-center">
           <img
