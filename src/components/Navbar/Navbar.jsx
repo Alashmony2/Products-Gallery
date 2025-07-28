@@ -105,19 +105,19 @@ export default function NavbarComponent() {
 
       <div className="hidden sm:flex w-full">
         <div className="container mx-auto px-2 flex items-center justify-between">
-          {/* Left side - Logo aligned with product cards start */}
           <div className="flex items-center gap-6">
             <NavbarBrand as={RouterLink} to="/" className="flex items-center gap-2 cursor-pointer">
               <AcmeLogo />
               <p className="font-bold text-inherit">Product Gallery</p>
-              <button
-                onClick={toggleDarkMode}
-                className="p-2 cursor-pointer rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-              >
-                {isDarkMode ? <MoonIcon /> : <SunIcon />}
-              </button>
             </NavbarBrand>
+            
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 cursor-pointer rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+              aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {isDarkMode ? <MoonIcon /> : <SunIcon />}
+            </button>
 
             <div className="flex items-center gap-4">
               <NavLink to="/" className="text-foreground hover:text-primary transition-colors">
