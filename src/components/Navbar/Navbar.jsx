@@ -10,8 +10,11 @@ import {
   NavbarItem,
   Link,
   Button,
+  Badge,
 } from "@heroui/react";
+import { ShoppingCart } from "lucide-react";
 import { AuthContext } from "../../contexts/AuthContext.jsx";
+import { CartContext } from "../../contexts/CartContext.jsx";
 
 export const AcmeLogo = () => (
   <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
@@ -26,6 +29,7 @@ export const AcmeLogo = () => (
 
 export default function NavbarComponent() {
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
@@ -49,7 +53,7 @@ export default function NavbarComponent() {
   };
 
   const menuItems = [
-    { name: "Cart", path: "/cart" },
+    { name: "Cart", path: "/cart", isCart: true },
     { name: "Categories", path: "/categories" },
   ];
 
@@ -59,16 +63,22 @@ export default function NavbarComponent() {
       onMenuOpenChange={setIsMenuOpen}
       disableAnimation
       isBordered
-      className="bg-white dark:bg-gray-800 text-black dark:text-gray-200 text-center"
+      className="dark:bg-gray-800 text-black dark:text-gray-200"
+      maxWidth="full"
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle />
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden pr-3" justify="center">
+      <NavbarContent className="sm:hidden" justify="center">
         <NavbarBrand as={RouterLink} to="/" className="flex items-center gap-2 cursor-pointer">
           <AcmeLogo />
           <p className="font-bold text-inherit">Product Gallery</p>
+        </NavbarBrand>
+      </NavbarContent>
+
+      <NavbarContent className="sm:hidden" justify="end">
+        <div className="flex items-center gap-2">
           <button
             onClick={toggleDarkMode}
             className="p-2 cursor-pointer rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
@@ -80,48 +90,69 @@ export default function NavbarComponent() {
               <SunIcon />
             )}
           </button>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarBrand as={RouterLink} to="/" className="flex items-center gap-2 cursor-pointer">
-          <AcmeLogo />
-          <p className="font-bold text-inherit">Product Gallery</p>
-          <button
-            onClick={toggleDarkMode}
-            className="p-2 cursor-pointer rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-            aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {isDarkMode ? <MoonIcon /> : <SunIcon />}
-          </button>
-        </NavbarBrand>
-
-        <NavbarItem>
-          <NavLink to="/">Home</NavLink>
-        </NavbarItem>
-        <NavbarItem>
-          <NavLink to="/cart">Cart</NavLink>
-        </NavbarItem>
-        <NavbarItem>
-          <NavLink to="/categories">Categories</NavLink>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        {isLoggedIn ? (
-          <NavbarItem>
-            <Button onPress={handleLogout} color="danger" variant="flat">
+          
+          {isLoggedIn ? (
+            <Button onPress={handleLogout} color="danger" variant="flat" size="sm">
               Logout
             </Button>
-          </NavbarItem>
-        ) : (
-          <NavbarItem>
-            <Button as={RouterLink} to="/login" color="warning" variant="flat">
+          ) : (
+            <Button as={RouterLink} to="/login" color="warning" variant="flat" size="sm">
               Login
             </Button>
-          </NavbarItem>
-        )}
+          )}
+        </div>
       </NavbarContent>
+
+      <div className="hidden sm:flex w-full">
+        <div className="container mx-auto px-2 flex items-center justify-between">
+          {/* Left side - Logo aligned with product cards start */}
+          <div className="flex items-center gap-6">
+            <NavbarBrand as={RouterLink} to="/" className="flex items-center gap-2 cursor-pointer">
+              <AcmeLogo />
+              <p className="font-bold text-inherit">Product Gallery</p>
+              <button
+                onClick={toggleDarkMode}
+                className="p-2 cursor-pointer rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+              >
+                {isDarkMode ? <MoonIcon /> : <SunIcon />}
+              </button>
+            </NavbarBrand>
+
+            <div className="flex items-center gap-4">
+              <NavLink to="/" className="text-foreground hover:text-primary transition-colors">
+                Home
+              </NavLink>
+              <NavLink to="/cart" className="text-foreground hover:text-primary transition-colors relative">
+                <Badge 
+                  content={cartItems.length} 
+                  color="danger" 
+                  size="sm"
+                  isInvisible={cartItems.length === 0}
+                  className="text-white"
+                >
+                  <ShoppingCart className="w-5 h-5" />
+                </Badge>
+              </NavLink>
+              <NavLink to="/categories" className="text-foreground hover:text-primary transition-colors">
+                Categories
+              </NavLink>
+            </div>
+          </div>
+
+          <div>
+            {isLoggedIn ? (
+              <Button onPress={handleLogout} color="danger" variant="flat">
+                Logout
+              </Button>
+            ) : (
+              <Button as={RouterLink} to="/login" color="warning" variant="flat">
+                Login
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
 
       <NavbarMenu className="bg-white dark:bg-gray-800">
         {menuItems.map((item) => (
@@ -130,17 +161,32 @@ export default function NavbarComponent() {
               as={RouterLink}
               to={item.path}
               onClick={() => setIsMenuOpen(false)}
-              className="w-full"
+              className="w-full flex items-center gap-2"
               color="foreground"
               size="lg"
             >
-              {item.name}
+              {item.isCart ? (
+                <>
+                  <Badge 
+                    content={cartItems.length} 
+                    color="danger" 
+                    size="sm"
+                    isInvisible={cartItems.length === 0}
+                    className="text-white"
+                  >
+                    <ShoppingCart className="w-5 h-5" />
+                  </Badge>
+                  <span>Cart</span>
+                </>
+              ) : (
+                item.name
+              )}
             </Link>
           </NavbarMenuItem>
         ))}
         {isLoggedIn && (
           <NavbarMenuItem>
-            <Button onPress={handleLogout} color="danger" variant="flat" fullWidth>
+            <Button   onPress={handleLogout} color="danger" variant="flat" fullWidth>
               Logout
             </Button>
           </NavbarMenuItem>
